@@ -19,7 +19,7 @@ This file tracks the step-by-step implementation of Neko. Each completed step wi
   - Write RAG synthesis generation prompt
   - Write Active Recall quiz prompt (asking a question grounded in note context)
   - Write Quiz grading/evaluation prompt (grading user response to update SM-2 parameters)
-- [ ] **Step 5**: FastAPI Backend API (`backend/main.py`)
+- [x] **Step 5**: FastAPI Backend API (`backend/main.py`)
   - Create endpoints:
     - `POST /api/notes` (add note and tags, generate and save embedding)
     - `POST /api/search` (embed query, retrieve top-K, ColBERT rerank top-M, generate RAG response)
