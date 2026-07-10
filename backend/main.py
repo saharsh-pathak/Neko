@@ -61,11 +61,11 @@ def create_note(note: NoteCreate):
     try:
         # Generate stable note ID using md5 hash of URL
         note_id = hashlib.md5(note.url.encode('utf-8')).hexdigest()
-        
+
         # Generate dense embedding
         print(f"Generating embedding for note: {note.title}...")
         embedding = retriever.get_embedding(note.content)
-        
+
         # Save to database
         db.add_note(
             db_path=db.DEFAULT_DB_PATH,
@@ -118,7 +118,7 @@ def search_vault(req: SearchRequest):
                 "answer": "Your vault is empty! Start saving bookmarks or highlights via the Neko extension.",
                 "results": []
             }
-            
+
         # Retrieve & rerank
         results = retriever.retrieve_and_rerank(
             query=req.query,
@@ -126,10 +126,10 @@ def search_vault(req: SearchRequest):
             top_k_dense=req.top_k,
             top_m_rerank=req.top_m
         )
-        
+
         # Generate RAG response
         answer = llm.generate_rag_response(req.query, results)
-        
+
         return {
             "answer": answer,
             "results": results
@@ -143,10 +143,10 @@ def get_next_quiz():
     try:
         due_count = db.get_due_count(db.DEFAULT_DB_PATH)
         next_note = db.get_next_review_note(db.DEFAULT_DB_PATH)
-        
+
         if not next_note:
             return {"note": None, "due_count": due_count}
-            
+
         return {
             "note": {
                 "id": next_note["id"],
@@ -165,15 +165,15 @@ def generate_quiz(payload: dict = Body(...)):
     note_id = payload.get("note_id")
     if not note_id:
         raise HTTPException(status_code=400, detail="Missing note_id")
-        
+
     # Fetch note content
     conn = db.get_db_connection(db.DEFAULT_DB_PATH)
     row = conn.execute("SELECT title, content FROM notes WHERE id = ?", (note_id,)).fetchone()
     conn.close()
-    
+
     if not row:
         raise HTTPException(status_code=404, detail="Note not found")
-        
+
     question_data = llm.generate_quiz_question(row["title"], row["content"])
     return question_data
 
@@ -186,19 +186,19 @@ def submit_quiz(submit: QuizSubmit):
         note_row = conn.execute("SELECT title, content FROM notes WHERE id = ?", (submit.note_id,)).fetchone()
         review_row = conn.execute("SELECT interval, repetition, ease_factor FROM reviews WHERE note_id = ?", (submit.note_id,)).fetchone()
         conn.close()
-        
+
         if not note_row:
             raise HTTPException(status_code=404, detail="Note not found")
-            
+
         # Grade user answer via LLM
         eval_data = llm.evaluate_quiz_answer(note_row["content"], submit.question, submit.user_answer)
         rating = eval_data["rating"]
-        
+
         # Get prior SM-2 values
         prev_interval = review_row["interval"] if review_row else 1
         prev_repetition = review_row["repetition"] if review_row else 0
         prev_ease_factor = review_row["ease_factor"] if review_row else 2.5
-        
+
         # Calculate next SM-2 interval
         if rating >= 3: # Correct/Pass
             if prev_repetition == 0:
@@ -211,14 +211,14 @@ def submit_quiz(submit: QuizSubmit):
         else: # Incorrect/Fail
             next_interval = 1
             next_repetition = 0
-            
+
         # Adjust ease factor
         next_ease_factor = prev_ease_factor + (0.1 - (5 - rating) * (0.08 + (5 - rating) * 0.02))
         if next_ease_factor < 1.3:
             next_ease_factor = 1.3
-            
+
         next_review_date = (date.today() + timedelta(days=next_interval)).isoformat()
-        
+
         # Save new state
         db.update_review_sm2(
             db_path=db.DEFAULT_DB_PATH,
@@ -229,7 +229,7 @@ def submit_quiz(submit: QuizSubmit):
             next_ease_factor=next_ease_factor,
             next_review_date=next_review_date
         )
-        
+
         return {
             "evaluation": eval_data,
             "sm2": {

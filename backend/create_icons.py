@@ -3,7 +3,7 @@ from PIL import Image
 
 def generate_icons():
     workspace_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    icon_source = os.path.join(workspace_dir, "Icon", "1ae576c47029a6182dc1c491c4e273a6.jpg")
+    icon_source = os.path.join(workspace_dir, "design", "icon.jpg")
     icons_dir = os.path.join(workspace_dir, "extension", "icons")
     
     os.makedirs(icons_dir, exist_ok=True)

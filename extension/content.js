@@ -81,9 +81,9 @@ function showRevisitBadge(note) {
     userSelect: "none"
   });
   
-  // Add a cute Neko icon using SVG
+  // Add a clean monochrome Neko icon using SVG
   badge.innerHTML = `
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fafafa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
       <path d="M12 8v4l3 3"/>
     </svg>
@@ -93,7 +93,7 @@ function showRevisitBadge(note) {
   // Hover effects
   badge.addEventListener("mouseenter", () => {
     badge.style.transform = "scale(1.05)";
-    badge.style.border = "1px solid rgba(167, 139, 250, 0.5)";
+    badge.style.border = "1px solid rgba(255, 255, 255, 0.4)";
   });
   badge.addEventListener("mouseleave", () => {
     badge.style.transform = "scale(1)";
