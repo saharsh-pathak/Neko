@@ -2,7 +2,7 @@
 
 This file tracks the step-by-step implementation of Neko. Each completed step will be committed to Git.
 
-- [ ] **Step 1**: Git Repository Setup & Initial Commit
+- [x] **Step 1**: Git Repository Setup & Initial Commit
   - Initialize Git repo
   - Create `.gitignore`
   - Add and commit initial project files (`PRD.md`, rules, `steps.md`)
