@@ -41,7 +41,7 @@ This file tracks the step-by-step implementation of Neko. Each completed step wi
   - Search & Chat Panel: search vault and converse with the RAG agent
   - Vault Browser: view all saved pages, edit tags, delete notes
   - Active Recall Panel: view pending reviews count, run through interactive LLM quizzes
-- [ ] **Step 8**: End-to-End Verification & Latency Benchmarks
+- [x] **Step 8**: End-to-End Verification & Latency Benchmarks
   - Perform system verification
   - Run latency checks
   - Compile `walkthrough.md`
