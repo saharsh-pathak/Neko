@@ -36,7 +36,7 @@ This file tracks the step-by-step implementation of Neko. Each completed step wi
     - Offline queue for local caching when server is down
     - Quick Q&A chat for the current webpage
   - Content script to display "revisit badge" on already-tagged pages
-- [ ] **Step 7**: Dashboard Web UI (`backend/static/`)
+- [x] **Step 7**: Dashboard Web UI (`backend/static/`)
   - Setup single-page dashboard app with premium dark glassmorphism styling (Vanilla CSS)
   - Search & Chat Panel: search vault and converse with the RAG agent
   - Vault Browser: view all saved pages, edit tags, delete notes
