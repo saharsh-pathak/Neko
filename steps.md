@@ -6,7 +6,7 @@ This file tracks the step-by-step implementation of Neko. Each completed step wi
   - Initialize Git repo
   - Create `.gitignore`
   - Add and commit initial project files (`PRD.md`, rules, `steps.md`)
-- [ ] **Step 2**: Database Schema (`backend/database.py`)
+- [x] **Step 2**: Database Schema (`backend/database.py`)
   - Initialize SQLite database
   - Create tables for `notes`, `tags`, `reviews` (SM-2 spacing params), and `review_history`
   - Add helper functions to insert, retrieve, and update note and spacing state
