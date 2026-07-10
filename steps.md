@@ -10,7 +10,7 @@ This file tracks the step-by-step implementation of Neko. Each completed step wi
   - Initialize SQLite database
   - Create tables for `notes`, `tags`, `reviews` (SM-2 spacing params), and `review_history`
   - Add helper functions to insert, retrieve, and update note and spacing state
-- [ ] **Step 3**: Retrieval and Re-ranking (`backend/retrieval.py`)
+- [x] **Step 3**: Retrieval and Re-ranking (`backend/retrieval.py`)
   - Load `LiquidAI/LFM2.5-Embedding-350M` for dense embeddings
   - Implement numpy-based Cosine Similarity vector search
   - Load `LiquidAI/LFM2.5-ColBERT-350M` and implement token-level MaxSim reranking

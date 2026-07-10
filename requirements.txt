@@ -1,0 +1,10 @@
+sentence-transformers
+transformers
+torch
+numpy
+fastapi
+uvicorn
+pydantic
+requests
+pylate
+
