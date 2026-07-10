@@ -27,7 +27,7 @@ This file tracks the step-by-step implementation of Neko. Each completed step wi
     - `POST /api/quiz/generate` (generate LLM question for a note)
     - `POST /api/quiz/submit` (submit user answer, grade it, update SM-2 metrics in DB)
   - Serve static frontend dashboard files
-- [ ] **Step 6**: Browser Extension (`extension/`)
+- [x] **Step 6**: Browser Extension (`extension/`)
   - Setup Manifest V3
   - Context menu selection capture
   - Pop-up panel with:

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+          <path d="M12 8v4l3 3"/>
+        </svg>
+        <span>Neko Vault</span>
+      </div>
+      <div class="status-badge" id="status-badge">Checking...</div>
+    </div>
+    
+    <div class="content">
+      <h3 class="page-title" id="page-title">Loading page info...</h3>
+      
+      <div class="form-group">
+        <label for="tag-input">Tags (comma separated)</label>
+        <div class="tag-input-wrapper">
+          <input type="text" id="tag-input" placeholder="e.g. ai, study, recipe">
+          <button class="icon-btn" id="voice-tags-btn" title="Add tags by voice">
+            <svg class="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+          </button>
+        </div>
+        <div class="voice-status" id="voice-status"></div>
+      </div>
+      
+      <button class="btn btn-primary" id="save-btn">Save This Page</button>
+      
+      <div class="divider"></div>
+      
+      <div class="qa-section" id="qa-section">
+        <h4>Ask this page a question</h4>
+        <div class="chat-input-wrapper">
+          <input type="text" id="chat-input" placeholder="What is the main argument?">
+          <button class="btn-send" id="chat-send-btn">Ask</button>
+        </div>
+        <div class="chat-response" id="chat-response"></div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <a href="http://localhost:8000" target="_blank">Open Neko Dashboard</a>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
