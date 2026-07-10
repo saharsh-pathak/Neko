@@ -1,0 +1,47 @@
+# Neko — Development Steps
+
+This file tracks the step-by-step implementation of Neko. Each completed step will be committed to Git.
+
+- [ ] **Step 1**: Git Repository Setup & Initial Commit
+  - Initialize Git repo
+  - Create `.gitignore`
+  - Add and commit initial project files (`PRD.md`, rules, `steps.md`)
+- [ ] **Step 2**: Database Schema (`backend/database.py`)
+  - Initialize SQLite database
+  - Create tables for `notes`, `tags`, `reviews` (SM-2 spacing params), and `review_history`
+  - Add helper functions to insert, retrieve, and update note and spacing state
+- [ ] **Step 3**: Retrieval and Re-ranking (`backend/retrieval.py`)
+  - Load `LiquidAI/LFM2.5-Embedding-350M` for dense embeddings
+  - Implement numpy-based Cosine Similarity vector search
+  - Load `LiquidAI/LFM2.5-ColBERT-350M` and implement token-level MaxSim reranking
+- [ ] **Step 4**: LLM Service & Active Recall (`backend/llm.py`)
+  - Configure Ollama client for `qwen3:4b`
+  - Write RAG synthesis generation prompt
+  - Write Active Recall quiz prompt (asking a question grounded in note context)
+  - Write Quiz grading/evaluation prompt (grading user response to update SM-2 parameters)
+- [ ] **Step 5**: FastAPI Backend API (`backend/main.py`)
+  - Create endpoints:
+    - `POST /api/notes` (add note and tags, generate and save embedding)
+    - `POST /api/search` (embed query, retrieve top-K, ColBERT rerank top-M, generate RAG response)
+    - `GET /api/quiz/next` (get next pending SM-2 review note)
+    - `POST /api/quiz/generate` (generate LLM question for a note)
+    - `POST /api/quiz/submit` (submit user answer, grade it, update SM-2 metrics in DB)
+  - Serve static frontend dashboard files
+- [ ] **Step 6**: Browser Extension (`extension/`)
+  - Setup Manifest V3
+  - Context menu selection capture
+  - Pop-up panel with:
+    - Text highlighting & tag input
+    - Recording voice note (integrated with browser microphone API)
+    - Offline queue for local caching when server is down
+    - Quick Q&A chat for the current webpage
+  - Content script to display "revisit badge" on already-tagged pages
+- [ ] **Step 7**: Dashboard Web UI (`backend/static/`)
+  - Setup single-page dashboard app with premium dark glassmorphism styling (Vanilla CSS)
+  - Search & Chat Panel: search vault and converse with the RAG agent
+  - Vault Browser: view all saved pages, edit tags, delete notes
+  - Active Recall Panel: view pending reviews count, run through interactive LLM quizzes
+- [ ] **Step 8**: End-to-End Verification & Latency Benchmarks
+  - Perform system verification
+  - Run latency checks
+  - Compile `walkthrough.md`
