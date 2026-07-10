@@ -14,7 +14,7 @@ This file tracks the step-by-step implementation of Neko. Each completed step wi
   - Load `LiquidAI/LFM2.5-Embedding-350M` for dense embeddings
   - Implement numpy-based Cosine Similarity vector search
   - Load `LiquidAI/LFM2.5-ColBERT-350M` and implement token-level MaxSim reranking
-- [ ] **Step 4**: LLM Service & Active Recall (`backend/llm.py`)
+- [x] **Step 4**: LLM Service & Active Recall (`backend/llm.py`)
   - Configure Ollama client for `qwen3:4b`
   - Write RAG synthesis generation prompt
   - Write Active Recall quiz prompt (asking a question grounded in note context)
